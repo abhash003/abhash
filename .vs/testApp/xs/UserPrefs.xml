@@ -1,0 +1,16 @@
+﻿<Properties StartupConfiguration="{FDA015D5-98D3-44B0-ADC4-CF0F80DF2D2F}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="testApp/MainActivity.cs">
+    <Files>
+      <File FileName="testApp/MainActivity.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.MonoDroid LastDeploySdkVersion="13.2.0.6" />
+  <MonoDevelop.Ide.ItemProperties.testApp PreferredExecutionTarget="Android.pixel_5_-_api_30" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.pixel_5_-_api_30" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+</Properties>
