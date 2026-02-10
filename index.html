@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>For You ❤️</title>
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -15,34 +14,36 @@
       margin: 0;
       height: 100vh;
       background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      background-size: 400% 400%;
+      animation: gradientMove 10s ease infinite;
       display: flex;
       justify-content: center;
       align-items: center;
       font-family: 'Segoe UI', sans-serif;
       overflow: hidden;
-      animation: bgMove 8s ease-in-out infinite alternate;
     }
 
-    @keyframes bgMove {
+    @keyframes gradientMove {
       0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.2);
       backdrop-filter: blur(10px);
       padding: 40px 30px;
       border-radius: 25px;
       text-align: center;
-      width: 330px;
+      width: 340px;
       position: relative;
       box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-      animation: float 3s ease-in-out infinite;
+      animation: floatCard 3s ease-in-out infinite;
     }
 
-    @keyframes float {
+    @keyframes floatCard {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      50% { transform: translateY(-12px); }
     }
 
     h1 {
@@ -68,8 +69,8 @@
       border: none;
       border-radius: 30px;
       cursor: pointer;
-      transition: transform 0.2s ease;
       position: absolute;
+      transition: transform 0.2s ease;
     }
 
     #yes {
@@ -91,8 +92,8 @@
     .kiss {
       position: absolute;
       font-size: 2rem;
-      animation: fall 4s linear infinite;
-      opacity: 0.8;
+      animation: fall linear forwards;
+      opacity: 0.85;
     }
 
     @keyframes fall {
@@ -152,6 +153,8 @@
           align-items:center;
           flex-direction:column;
           background:linear-gradient(135deg,#ff758c,#ff7eb3);
+          background-size:400% 400%;
+          animation:gradientMove 10s ease infinite;
           color:white;
           font-family:'Segoe UI',sans-serif;
           text-align:center;
@@ -164,7 +167,7 @@
       for (let i = 0; i < 25; i++) {
         const kiss = document.createElement("div");
         kiss.className = "kiss";
-        kiss.innerText = "💋";
+        kiss.textContent = "💋";
         kiss.style.left = Math.random() * 100 + "vw";
         kiss.style.animationDuration = (Math.random() * 2 + 3) + "s";
         document.body.appendChild(kiss);
