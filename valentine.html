@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Just For You ❤️</title>
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #ff4d6d, #ff8fa3);
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      color: white;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+      position: relative;
+      width: 320px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2rem;
+    }
+
+    .buttons {
+      margin-top: 30px;
+      position: relative;
+      height: 120px;
+    }
+
+    button {
+      padding: 12px 28px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      position: absolute;
+    }
+
+    #yes {
+      background: white;
+      color: #ff4d6d;
+      left: 40px;
+    }
+
+    #no {
+      background: #ffccd5;
+      color: #b5172f;
+      right: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>Hey ❤️</h1>
+    <p>Will you be my Valentine? 💕</p>
+
+    <div class="buttons">
+      <button id="yes" onclick="yesClicked()">Yes 💖</button>
+      <button id="no" onmouseover="moveNo()">No 🙈</button>
+    </div>
+  </div>
+
+  <script>
+    function moveNo() {
+      const noBtn = document.getElementById("no");
+
+      const maxX = 250;
+      const maxY = 80;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    }
+
+    function yesClicked() {
+      document.body.innerHTML = `
+        <div style="
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          height:100vh;
+          background:linear-gradient(135deg,#ff758c,#ff7eb3);
+          color:white;
+          font-family:'Segoe UI',sans-serif;
+          text-align:center;
+        ">
+          <div>
+            <h1>You said YES 😍💖</h1>
+            <p>I knew it! Happy Valentine’s Day ❤️</p>
+          </div>
+        </div>
+      `;
+    }
+  </script>
+
+</body>
+</html>
