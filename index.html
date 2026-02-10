@@ -1,65 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Just For You ❤️</title>
+  <meta charset="UTF-8" />
+  <title>For You ❤️</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      background: linear-gradient(135deg, #ff4d6d, #ff8fa3);
-      height: 100vh;
       margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
       display: flex;
       justify-content: center;
       align-items: center;
       font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-      color: white;
+      overflow: hidden;
+      animation: bgMove 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.15);
-      padding: 40px;
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(10px);
+      padding: 40px 30px;
       border-radius: 25px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+      text-align: center;
+      width: 330px;
       position: relative;
-      width: 320px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
     h1 {
+      color: white;
       font-size: 2.2rem;
       margin-bottom: 10px;
     }
 
     p {
+      color: white;
       font-size: 1.2rem;
     }
 
     .buttons {
-      margin-top: 30px;
-      position: relative;
+      margin-top: 35px;
       height: 120px;
+      position: relative;
     }
 
     button {
-      padding: 12px 28px;
+      padding: 12px 30px;
       font-size: 1rem;
       border: none;
       border-radius: 30px;
       cursor: pointer;
+      transition: transform 0.2s ease;
       position: absolute;
     }
 
     #yes {
       background: white;
       color: #ff4d6d;
-      left: 40px;
+      left: 30px;
+    }
+
+    #yes:hover {
+      transform: scale(1.1);
     }
 
     #no {
-      background: #ffccd5;
+      background: #ffd6dd;
       color: #b5172f;
-      right: 40px;
+      right: 30px;
+    }
+
+    .kiss {
+      position: absolute;
+      font-size: 2rem;
+      animation: fall 4s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
     }
   </style>
 </head>
@@ -71,17 +115,22 @@
     <p>Will you be my Valentine? 💕</p>
 
     <div class="buttons">
-      <button id="yes" onclick="yesClicked()">Yes 💖</button>
-      <button id="no" onmouseover="moveNo()">No 🙈</button>
+      <button id="yes">Yes 💖</button>
+      <button id="no">No 🙈</button>
     </div>
   </div>
 
   <script>
-    function moveNo() {
-      const noBtn = document.getElementById("no");
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+    const card = document.querySelector(".card");
 
-      const maxX = 250;
-      const maxY = 80;
+    function moveNo() {
+      const cardRect = card.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+
+      const maxX = cardRect.width - btnRect.width;
+      const maxY = cardRect.height - btnRect.height;
 
       const x = Math.random() * maxX;
       const y = Math.random() * maxY;
@@ -90,28 +139,37 @@
       noBtn.style.top = y + "px";
     }
 
-    function yesClicked() {
+    noBtn.addEventListener("mouseenter", moveNo);
+    noBtn.addEventListener("touchstart", moveNo);
+
+    yesBtn.addEventListener("click", () => {
       document.body.innerHTML = `
-        document.body.innerHTML = `
-      <div style="
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        flex-direction:column;
-        height:100vh;
-        background:linear-gradient(135deg,#ff758c,#ff7eb3);
-        font-family:'Segoe UI',sans-serif;
-        text-align:center;
-        color:white;
-      ">
-        <h1 style="font-size:2.5rem;">You said YES 😍</h1>
-        <p style="font-size:1.5rem;">Sending you kisses 💕</p>
-        <div style="font-size:3rem; margin-top:20px;">
-          💋 💋 💋 💋 💋 💋 💋 💋 💋
+        <div style="
+          height:100vh;
+          width:100vw;
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          flex-direction:column;
+          background:linear-gradient(135deg,#ff758c,#ff7eb3);
+          color:white;
+          font-family:'Segoe UI',sans-serif;
+          text-align:center;
+        ">
+          <h1 style="font-size:2.5rem;">You said YES 😍💖</h1>
+          <p style="font-size:1.5rem;">Sending you kisses…</p>
         </div>
-      </div>
-    `;
-    }
+      `;
+
+      for (let i = 0; i < 25; i++) {
+        const kiss = document.createElement("div");
+        kiss.className = "kiss";
+        kiss.innerText = "💋";
+        kiss.style.left = Math.random() * 100 + "vw";
+        kiss.style.animationDuration = (Math.random() * 2 + 3) + "s";
+        document.body.appendChild(kiss);
+      }
+    });
   </script>
 
 </body>
